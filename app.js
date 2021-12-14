@@ -1,4 +1,5 @@
 var createError = require('http-errors');
+var dotenv = require('dotenv');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -7,8 +8,14 @@ var cors = require("cors");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var testAPIRouter = require("./routes/testAPI")
+var connectDB = require('./config/db')
 
 var app = express();
+
+
+
+dotenv.config({path: './config/config.env'})
+connectDB()
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
