@@ -7,8 +7,7 @@ var logger = require('morgan');
 var cors = require("cors");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var testAPIRouter = require("./routes/testAPI")
-var registerRouter = require("./routes/register")
+var authRouter = require("./routes/auth")
 const connectDB = require('./config/db')
 const User = require('./models/user');
 var app = express();
@@ -30,7 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use('/', indexRouter);
-app.use("/", registerRouter);
+app.use('/', authRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
